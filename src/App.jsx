@@ -52,6 +52,7 @@ function App() {
       console.error('Error guardando mensaje:', messageError)
       return
     }
+    setMessages((prev) => [...prev, { estudiante: formData.estudiante, mensaje: formData.mensaje, imagen_url }])
     setSubmitted(true)
     setFormData(initialForm)
     setPhotoPreview(null)
@@ -71,7 +72,11 @@ function App() {
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'mensajes' }, (payload) => {
         setMessages((prev) => [...prev, payload.new])
       })
-      .subscribe()
+      .subscribe((status) => {
+        if (status !== 'SUBSCRIBED') {
+          console.warn('Realtime status:', status)
+        }
+      })
 
     return () => { supabase.removeChannel(channel) }
   }, [])
@@ -194,14 +199,14 @@ function App() {
               </label>
 
               <label className="field">
-                <span className="field-label">Foto de perfil (opcional)</span>
+                <span className="field-label">Foto (opcional)</span>
                 <input className="file-input" type="file" accept="image/*" onChange={handleFileChange} />
               </label>
 
               {photoPreview ? (
                 <img className="photo-preview" src={photoPreview} alt="Vista previa" />
               ) : (
-                <div className="photo-placeholder">Sube una foto de perfil que te represente</div>
+                <div className="photo-placeholder">Sube una foto que represente tu identidad y tus metas</div>
               )}
 
               <button className="btn btn-primary btn-block" type="submit">
@@ -226,19 +231,18 @@ function App() {
               <h2 className="section-title">Lo que soñamos ser</h2>
             </div>
             <div className="message-grid">
-              {messages.map((m) => (
-                <article className="message-card" key={m.estudiante}>
-                  <div className="message-author">
-                    {m.imagen_url ? (
-                      <img className="avatar-img" src={m.imagen_url} alt="" />
-                    ) : (
+              {messages.map((m, i) => (
+                <article className="message-card" key={m.id || i}>
+                  {m.imagen_url && <img className="post-img" src={m.imagen_url} alt="" />}
+                  <div className="post-body">
+                    <div className="message-author">
                       <div className="avatar">{m.estudiante.charAt(0)}</div>
-                    )}
-                    <div>
-                      <h3 className="message-name">{m.estudiante}</h3>
+                      <div>
+                        <h3 className="message-name">{m.estudiante}</h3>
+                      </div>
                     </div>
+                    <p className="message-text">{m.mensaje}</p>
                   </div>
-                  <p className="message-text">{m.mensaje}</p>
                 </article>
               ))}
             </div>

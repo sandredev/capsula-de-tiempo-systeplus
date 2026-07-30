@@ -386,15 +386,26 @@
 }
 
 .message-card {
-  padding: 1rem 1.1rem;
   background: #f8fcff;
   border: 1px solid var(--border);
   border-radius: 16px;
+  overflow: hidden;
   transition: box-shadow 200ms ease;
 }
 
 .message-card:hover {
   box-shadow: 0 4px 16px rgba(91, 154, 208, 0.06);
+}
+
+.post-img {
+  width: 100%;
+  display: block;
+  max-height: 280px;
+  object-fit: cover;
+}
+
+.post-body {
+  padding: 1rem 1.1rem;
 }
 
 .message-author {
@@ -428,14 +439,6 @@
   margin: 0.05rem 0 0;
   font-size: 0.73rem;
   color: var(--text-muted);
-}
-
-.avatar-img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
 }
 
 .message-text {
