@@ -1,0 +1,581 @@
+/* ── Layout ────────────────────────────────────── */
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  flex: 1;
+  display: grid;
+  gap: 1.5rem;
+  padding: 0 1rem 2rem;
+}
+
+/* ── Top Bar ───────────────────────────────────── */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.brand img {
+  height: 36px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.brand-tagline {
+  display: none;
+  margin: 0;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+  max-width: 200px;
+}
+
+@media (min-width: 500px) {
+  .brand-tagline {
+    display: block;
+  }
+}
+
+/* ── Hero ──────────────────────────────────────── */
+
+.hero {
+  padding: 1.75rem 1.5rem;
+  background: linear-gradient(145deg, rgba(91, 154, 208, 0.07) 0%, rgba(150, 200, 230, 0.18) 100%);
+  border: 1px solid rgba(91, 154, 208, 0.12);
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero-content {
+  max-width: 680px;
+}
+
+.hero-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 4.5vw, 2.3rem);
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.hero-desc {
+  margin: 0.7rem 0 0;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-size: 0.9rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+/* ── Steps Card ────────────────────────────────── */
+
+.steps-card {
+  padding: 1rem 1.1rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(91, 154, 208, 0.1);
+  border-radius: 18px;
+  margin: 1rem 0 0;
+}
+
+.steps-label {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+}
+
+.steps-list {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.steps-list li {
+  counter-increment: step;
+  padding-left: 1.8rem;
+  position: relative;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.steps-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-size: 0.62rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+/* ── Instagram Section ─────────────────────────── */
+
+.instagram-section {
+  scroll-margin-top: 1rem;
+}
+
+.instagram-card {
+  padding: 1.75rem 1.5rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 242, 247, 0.92));
+  border: 1px solid rgba(220, 39, 67, 0.08);
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.instagram-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.instagram-big-icon {
+  width: 22px;
+  height: 22px;
+  color: #dc2743;
+}
+
+.instagram-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+.instagram-desc {
+  margin: 0.6rem auto 0;
+  max-width: 480px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.instagram-posts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  margin: 1.25rem 0;
+}
+
+@media (min-width: 500px) {
+  .instagram-posts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.insta-post {
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid rgba(220, 39, 67, 0.06);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+
+.insta-post:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(220, 39, 67, 0.1);
+}
+
+.insta-post-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+}
+
+.insta-post-caption {
+  margin: 0;
+  padding: 0.7rem 0.8rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  text-align: left;
+}
+
+.instagram-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.88rem;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 6px 24px rgba(220, 39, 67, 0.3);
+}
+
+.instagram-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(220, 39, 67, 0.45);
+}
+
+.instagram-cta:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.instagram-cta svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ── Buttons ───────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  padding: 0.65rem 1.15rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform 250ms ease;
+}
+
+.btn:hover .btn-icon {
+  transform: translateX(3px);
+}
+
+.btn-outline:hover .btn-icon {
+  transform: scale(1.15);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 8px 20px rgba(91, 154, 208, 0.25);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(91, 154, 208, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.btn-outline:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.btn-outline:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 8px 20px rgba(91, 154, 208, 0.25);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(91, 154, 208, 0.45);
+  }
+}
+
+/* ── Section Card ──────────────────────────────── */
+
+.section-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem;
+}
+
+.section-header {
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+/* ── Content Grid ──────────────────────────────── */
+
+.content-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+/* ── Message Cards ─────────────────────────────── */
+
+.message-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.message-card {
+  padding: 1rem 1.1rem;
+  background: #f8fcff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: box-shadow 200ms ease;
+}
+
+.message-card:hover {
+  box-shadow: 0 4px 16px rgba(91, 154, 208, 0.06);
+}
+
+.message-author {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #8ab8e0);
+  color: white;
+  font-weight: 800;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.message-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.message-role {
+  margin: 0.05rem 0 0;
+  font-size: 0.73rem;
+  color: var(--text-muted);
+}
+
+.avatar-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.message-text {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  font-size: 0.87rem;
+}
+
+/* ── Form ──────────────────────────────────────── */
+
+.form-wrapper {
+  scroll-margin-top: 1rem;
+}
+
+.form-card {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.84rem;
+  color: var(--text-primary);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  background: white;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.file-input {
+  padding: 0.5rem;
+}
+
+.photo-placeholder {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 14px;
+  border: 1.5px dashed var(--border);
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  background: rgba(91, 154, 208, 0.04);
+  font-size: 0.84rem;
+  padding: 1rem;
+}
+
+.photo-preview {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.feedback {
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: rgba(91, 154, 208, 0.06);
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 0.84rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ── Footer ────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.footer .brand img {
+  height: 32px;
+}
+
+/* ── Desktop ≥ 820px ───────────────────────────── */
+
+@media (min-width: 820px) {
+  .topbar,
+  .footer {
+    padding: 1rem 2rem;
+  }
+
+  .page {
+    padding: 0 2rem 2.5rem;
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+  .hero {
+    padding: 2rem 2.5rem;
+  }
+
+  .section-card {
+    padding: 1.5rem;
+  }
+
+  .footer .brand img {
+    height: 36px;
+  }
+}
