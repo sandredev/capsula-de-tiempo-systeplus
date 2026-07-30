@@ -52,7 +52,6 @@ function App() {
       console.error('Error guardando mensaje:', messageError)
       return
     }
-    setMessages((prev) => [...prev, { estudiante: formData.estudiante, mensaje: formData.mensaje, imagen_url }])
     setSubmitted(true)
     setFormData(initialForm)
     setPhotoPreview(null)
